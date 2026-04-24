@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colección Método GEO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --gold: #C9A84C;
+      --gold-light: #e8c96a;
+      --white: #ffffff;
+      --gray: #888888;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 100px 40px 90px;
+      text-align: center;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(52px, 10vw, 110px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-values {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .hero-values b { color: var(--gold); }
+
+    .hero-scroll {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 13px 32px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .hero-scroll:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0.3;
+      margin: 0 40px;
+    }
+
+    /* VALUES STRIP */
+    .values-strip {
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 28px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .value-item {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .value-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* PRODUCTS */
+    .products-section {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    /* PRODUCT CARD */
+    .product-card {
+      cursor: pointer;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: #e8e6e2;
+    }
+
+    .product-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease, transform 0.5s ease;
+    }
+
+    .product-img-wrap .img-back { opacity: 0; }
+
+    .product-card:hover .product-img-wrap .img-front {
+      opacity: 0;
+      transform: scale(1.03);
+    }
+
+    .product-card:hover .product-img-wrap .img-back {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      z-index: 2;
+    }
+
+    .product-info { padding: 20px 0 0; }
+
+    .product-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: var(--white);
+    }
+
+    .product-sub {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .product-price-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .product-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .product-shipping {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    .shipping-free {
+      font-size: 12px;
+      color: #6dbf6d;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* PACK CARD — full width */
+    .pack-card {
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(201,168,76,0.35);
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.2s ease;
+    }
+
+    .pack-card:hover { border-color: var(--gold); }
+
+    .pack-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #e8e6e2;
+    }
+
+    .pack-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease, transform 0.5s ease;
+    }
+
+    .pack-img-wrap .img-back { opacity: 0; }
+
+    .pack-card:hover .pack-img-wrap .img-front {
+      opacity: 0;
+      transform: scale(1.03);
+    }
+
+    .pack-card:hover .pack-img-wrap .img-back {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+
+    .pack-info {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      background: #111;
+    }
+
+    .pack-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .pack-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: var(--white);
+    }
+
+    .pack-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .pack-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pack-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .pack-old-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #555;
+      text-decoration: line-through;
+    }
+
+    .pack-saving {
+      font-size: 12px;
+      color: #6dbf6d;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pack-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 15px 28px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      align-self: flex-start;
+    }
+
+    .pack-btn:hover { background: var(--gold-light); }
+
+    /* RETURNS NOTE */
+    .returns-note {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 64px;
+      text-align: center;
+    }
+
+    .returns-note p {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .returns-note p span {
+      color: #666;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: #111;
+      max-width: 900px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.25);
+    }
+
+    .modal-imgs {
+      background: #e8e6e2;
+      overflow: hidden;
+    }
+
+    .modal-imgs img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-content {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--gray);
+      line-height: 1;
+      z-index: 10;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: var(--white); }
+
+    .modal-tag {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .modal-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .modal-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .modal-shipping-note {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .modal-shipping-free {
+      font-size: 12px;
+      color: #6dbf6d;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .modal-separator {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .size-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .size-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .size-btn {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--white);
+    }
+
+    .size-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .size-btn.active {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    .btn-buy {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 17px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 4px;
+    }
+
+    .btn-buy:hover { background: var(--gold-light); }
+
+    .btn-buy:disabled {
+      background: rgba(255,255,255,0.07);
+      color: var(--gray);
+      cursor: not-allowed;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer p {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      color: #333;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { padding: 70px 20px 60px; }
+      .products-section { padding: 60px 20px; }
+      .products-grid { grid-template-columns: 1fr; gap: 24px; }
+      .pack-card { grid-template-columns: 1fr; }
+      .pack-img-wrap { aspect-ratio: 3/2; }
+      .pack-info { padding: 28px 24px; }
+      .modal { grid-template-columns: 1fr; }
+      .modal-imgs { aspect-ratio: 4/3; }
+      .modal-content { padding: 28px 24px; }
+      .values-strip { gap: 20px; padding: 20px; }
+      .returns-note { padding: 0 20px 48px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 46px; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .product-name { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-tag">Edición Limitada · Colección Oficial</p>
+    <h1>
+      Nada se regala.
+      <span>Se gana.</span>
+    </h1>
+    <p class="hero-values">
+      <b>Lealtad</b> &nbsp;·&nbsp; <b>Sacrificio</b> &nbsp;·&nbsp; <b>Constancia</b>
+    </p>
+    <a href="#coleccion" class="hero-scroll">Ver la colección</a>
+  </section>
+
+  <!-- VALUES STRIP -->
+  <div class="values-strip">
+    <span class="value-item">100% Algodón Premium</span>
+    <span class="value-item">Edición Limitada</span>
+    <span class="value-item">Envío en 3–5 días</span>
+    <span class="value-item">Colección Oficial GEO</span>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="coleccion">
+    <p class="section-label">La Colección</p>
+
+    <!-- 2 camisetas individuales -->
+    <div class="products-grid">
+
+      <!-- Producto 1 — Escudo -->
+      <div class="product-card" onclick="openModal(0)">
+        <div class="product-img-wrap">
+          <span class="product-badge">Exclusiva</span>
+          <img class="img-front" src="ImágenesWeb/1_1.jpg" alt="Camiseta Escudo MG" />
+          <img class="img-back" src="ImágenesWeb/2_3.jpg" alt="Camiseta Escudo MG — espalda" />
+        </div>
+        <div class="product-info">
+          <p class="product-name">Camiseta Escudo</p>
+          <p class="product-sub">Negro · Logo MG + Escudo en espalda</p>
+          <div class="product-price-wrap">
+            <span class="product-price">30,00 €</span>
+            <span class="product-shipping">+ 3,95 € envío</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 — Nada se regala -->
+      <div class="product-card" onclick="openModal(1)">
+        <div class="product-img-wrap">
+          <span class="product-badge">Exclusiva</span>
+          <img class="img-front" src="ImágenesWeb/2_4.jpg" alt="Camiseta Nada se regala" />
+          <img class="img-back" src="ImágenesWeb/1_1.jpg" alt="Camiseta Nada se regala — frontal" />
+        </div>
+        <div class="product-info">
+          <p class="product-name">Nada se regala</p>
+          <p class="product-sub">Negro · Texto de impacto en espalda</p>
+          <div class="product-price-wrap">
+            <span class="product-price">30,00 €</span>
+            <span class="product-shipping">+ 3,95 € envío</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PACK — destacado -->
+    <div class="pack-card" onclick="openModal(2)">
+      <div class="pack-img-wrap">
+        <img class="img-front" src="ImágenesWeb/4_1.jpg" alt="Pack 2 Camisetas" />
+        <img class="img-back" src="ImágenesWeb/3_1.jpg" alt="Pack 2 Camisetas — detalle" />
+      </div>
+      <div class="pack-info">
+        <p class="pack-tag">Mejor valor · Portes incluidos</p>
+        <h3 class="pack-name">Pack<br>2 Camisetas</h3>
+        <p class="pack-desc">Las dos camisetas de la colección en un solo pedido. Escudo + Nada se regala. La combinación perfecta para los que van en serio.</p>
+        <div class="pack-price-row">
+          <span class="pack-price">49,00 €</span>
+          <span class="pack-old-price">63,95 €</span>
+          <span class="pack-saving">Ahorras 14,95 €</span>
+        </div>
+        <button class="pack-btn">Elegir tallas</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- RETURNS NOTE -->
+  <div class="returns-note">
+    <p>
+      <span>Devoluciones:</span> Dispones de 14 días desde la recepción del pedido. Los gastos de devolución (3–5 €) corren a cargo del comprador. El artículo debe devolverse en un punto de recogida en su estado original.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Método GEO — Todos los derechos reservados</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      <div class="modal-imgs">
+        <img id="modal-img" src="" alt="" />
+      </div>
+      <div class="modal-content">
+        <p class="modal-tag">Edición Limitada · Colección Oficial</p>
+        <h2 class="modal-name" id="modal-name"></h2>
+        <div class="modal-price-row">
+          <span class="modal-price" id="modal-price"></span>
+          <span id="modal-shipping-note"></span>
+        </div>
+        <div class="modal-separator"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div id="size-block-1">
+          <p class="size-label" id="size-label-1">Selecciona tu talla</p>
+          <div class="size-options" id="size-options-1"></div>
+        </div>
+        <div id="size-block-2" style="display:none">
+          <p class="size-label" id="size-label-2">Talla — Nada se regala</p>
+          <div class="size-options" id="size-options-2"></div>
+        </div>
+        <button class="btn-buy" id="btn-buy" disabled onclick="handleBuy()">
+          Selecciona una talla
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SIZES = ['XS','S','M','L','XL','2XL'];
+
+    const products = [
+      {
+        name: 'Camiseta Escudo',
+        price: '30,00 €',
+        shipping: '+ 3,95 € envío',
+        img: 'ImágenesWeb/1_1.jpg',
+        desc: 'Lleva los valores en la espalda. Camiseta en algodón premium con logo bordado en el pecho y el escudo Método GEO de gran formato en la espalda. Lealtad · Sacrificio · Constancia.',
+        isPack: false
+      },
+      {
+        name: 'Nada se regala',
+        price: '30,00 €',
+        shipping: '+ 3,95 € envío',
+        img: 'ImágenesWeb/2_4.jpg',
+        desc: 'Las palabras que te impulsan, puestas en tejido. "Nada se regala. Se gana. En proceso." Camiseta en algodón premium con logo en el pecho y diseño tipográfico exclusivo en la espalda.',
+        isPack: false
+      },
+      {
+        name: 'Pack 2 Camisetas',
+        price: '49,00 €',
+        shipping: 'Envío incluido',
+        shippingFree: true,
+        img: 'ImágenesWeb/4_1.jpg',
+        desc: 'Las dos camisetas de la colección — Escudo + Nada se regala — en un solo pedido. Elige una talla para cada modelo. El portes viene incluido.',
+        isPack: true
+      }
+    ];
+
+    let selectedSize1 = null;
+    let selectedSize2 = null;
+    let currentIsPack = false;
+
+    function openModal(index) {
+      const p = products[index];
+      currentIsPack = p.isPack;
+      selectedSize1 = null;
+      selectedSize2 = null;
+
+      document.getElementById('modal-img').src = p.img;
+      document.getElementById('modal-img').alt = p.name;
+      document.getElementById('modal-name').textContent = p.name;
+      document.getElementById('modal-price').textContent = p.price;
+
+      const shippingEl = document.getElementById('modal-shipping-note');
+      shippingEl.textContent = p.shipping;
+      shippingEl.className = p.shippingFree ? 'modal-shipping-free' : 'modal-shipping-note';
+
+      document.getElementById('modal-desc').textContent = p.desc;
+
+      buildSizes('size-options-1', 1);
+      document.getElementById('size-label-1').textContent = p.isPack ? 'Talla — Camiseta Escudo' : 'Selecciona tu talla';
+
+      const block2 = document.getElementById('size-block-2');
+      if (p.isPack) {
+        block2.style.display = 'block';
+        buildSizes('size-options-2', 2);
+      } else {
+        block2.style.display = 'none';
+      }
+
+      const buyBtn = document.getElementById('btn-buy');
+      buyBtn.disabled = true;
+      buyBtn.textContent = 'Selecciona una talla';
+
+      document.getElementById('modal-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function buildSizes(containerId, slot) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      SIZES.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'size-btn';
+        btn.textContent = s;
+        btn.onclick = () => selectSize(s, btn, slot);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectSize(size, btn, slot) {
+      const containerId = 'size-options-' + slot;
+      document.querySelectorAll('#' + containerId + ' .size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (slot === 1) selectedSize1 = size;
+      if (slot === 2) selectedSize2 = size;
+
+      updateBuyBtn();
+    }
+
+    function updateBuyBtn() {
+      const buyBtn = document.getElementById('btn-buy');
+      if (currentIsPack) {
+        if (selectedSize1 && selectedSize2) {
+          buyBtn.disabled = false;
+          buyBtn.textContent = 'Añadir al carrito — Escudo ' + selectedSize1 + ' · GEO ' + selectedSize2;
+        } else {
+          buyBtn.disabled = true;
+          buyBtn.textContent = 'Selecciona las dos tallas';
+        }
+      } else {
+        if (selectedSize1) {
+          buyBtn.disabled = false;
+          buyBtn.textContent = 'Añadir al carrito — ' + selectedSize1;
+        } else {
+          buyBtn.disabled = true;
+          buyBtn.textContent = 'Selecciona una talla';
+        }
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+
+    function handleBuy() {
+      alert('Próximamente conectado con Shopify — versión demo');
+    }
+  </script>
+
+</body>
+</html>
