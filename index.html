@@ -4,20 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colección Método GEO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Termina';
+      src: url('fonts/TerminaTest-Heavy.otf') format('opentype');
+      font-weight: 700 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Termina';
+      src: url('fonts/TerminaTest-Medium.otf') format('opentype');
+      font-weight: 500 600;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Termina';
+      src: url('fonts/TerminaTest-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('fonts/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --black: #111111;
-      --gold: #F0A500;
-      --gold-light: #F5C030;
+      --gold: #eec233;
+      --gold-light: #f5d76e;
       --white: #ffffff;
       --gray: #888888;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--black);
       color: var(--white);
       min-height: 100vh;
@@ -36,12 +60,12 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(240,165,0,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(238,194,51,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .hero-tag {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 6px;
@@ -51,7 +75,7 @@
     }
 
     .hero h1 {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: clamp(52px, 10vw, 110px);
       font-weight: 700;
       letter-spacing: -1px;
@@ -66,7 +90,7 @@
     }
 
     .hero-values {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 5px;
@@ -79,7 +103,7 @@
 
     .hero-scroll {
       display: inline-block;
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 4px;
@@ -103,8 +127,8 @@
 
     /* VALUES STRIP */
     .values-strip {
-      border-top: 1px solid rgba(240,165,0,0.2);
-      border-bottom: 1px solid rgba(240,165,0,0.2);
+      border-top: 1px solid rgba(238,194,51,0.2);
+      border-bottom: 1px solid rgba(238,194,51,0.2);
       padding: 28px 40px;
       display: flex;
       justify-content: center;
@@ -114,7 +138,7 @@
     }
 
     .value-item {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 3px;
@@ -142,7 +166,7 @@
     }
 
     .section-label {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 6px;
@@ -198,7 +222,7 @@
       left: 16px;
       background: var(--gold);
       color: var(--black);
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 3px;
@@ -210,7 +234,7 @@
     .product-info { padding: 20px 0 0; }
 
     .product-name {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -234,7 +258,7 @@
     }
 
     .product-price {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 22px;
       font-weight: 700;
       color: var(--gold);
@@ -259,7 +283,7 @@
       cursor: pointer;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border: 1px solid rgba(240,165,0,0.35);
+      border: 1px solid rgba(238,194,51,0.35);
       overflow: hidden;
       position: relative;
       transition: border-color 0.2s ease;
@@ -305,7 +329,7 @@
     }
 
     .pack-tag {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 5px;
@@ -314,7 +338,7 @@
     }
 
     .pack-name {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 30px;
       font-weight: 700;
       text-transform: uppercase;
@@ -337,14 +361,14 @@
     }
 
     .pack-price {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 36px;
       font-weight: 700;
       color: var(--gold);
     }
 
     .pack-old-price {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 20px;
       font-weight: 400;
       color: #555;
@@ -363,7 +387,7 @@
       display: inline-block;
       background: var(--gold);
       color: var(--black);
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 4px;
@@ -419,7 +443,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
-      border: 1px solid rgba(240,165,0,0.25);
+      border: 1px solid rgba(238,194,51,0.25);
     }
 
     .modal-imgs {
@@ -458,7 +482,7 @@
     .modal-close:hover { color: var(--white); }
 
     .modal-tag {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 5px;
@@ -467,7 +491,7 @@
     }
 
     .modal-name {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 30px;
       font-weight: 700;
       text-transform: uppercase;
@@ -484,7 +508,7 @@
     }
 
     .modal-price {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 28px;
       font-weight: 700;
       color: var(--gold);
@@ -516,7 +540,7 @@
     }
 
     .size-label {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 4px;
@@ -536,7 +560,7 @@
       background: transparent;
       padding: 10px 16px;
       font-size: 13px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -557,7 +581,7 @@
       color: var(--black);
       border: none;
       padding: 17px;
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 4px;
@@ -583,7 +607,7 @@
     }
 
     footer p {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Termina', sans-serif;
       font-size: 12px;
       color: #333;
       letter-spacing: 2px;
