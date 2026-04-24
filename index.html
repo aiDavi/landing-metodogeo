@@ -9,9 +9,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
-      --gold: #C9A84C;
-      --gold-light: #e8c96a;
+      --black: #111111;
+      --gold: #F0A500;
+      --gold-light: #F5C030;
       --white: #ffffff;
       --gray: #888888;
     }
@@ -36,7 +36,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(240,165,0,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -103,8 +103,8 @@
 
     /* VALUES STRIP */
     .values-strip {
-      border-top: 1px solid rgba(201,168,76,0.2);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
+      border-top: 1px solid rgba(240,165,0,0.2);
+      border-bottom: 1px solid rgba(240,165,0,0.2);
       padding: 28px 40px;
       display: flex;
       justify-content: center;
@@ -259,7 +259,7 @@
       cursor: pointer;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border: 1px solid rgba(201,168,76,0.35);
+      border: 1px solid rgba(240,165,0,0.35);
       overflow: hidden;
       position: relative;
       transition: border-color 0.2s ease;
@@ -419,7 +419,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
-      border: 1px solid rgba(201,168,76,0.25);
+      border: 1px solid rgba(240,165,0,0.25);
     }
 
     .modal-imgs {
@@ -646,8 +646,8 @@
       <div class="product-card" onclick="openModal(0)">
         <div class="product-img-wrap">
           <span class="product-badge">Exclusiva</span>
-          <img class="img-front" src="ImágenesWeb/1_1.jpg" alt="Camiseta Escudo MG" />
-          <img class="img-back" src="ImágenesWeb/2_3.jpg" alt="Camiseta Escudo MG — espalda" />
+          <img class="img-front" src="img/1_1.jpg" alt="Camiseta Escudo MG" />
+          <img class="img-back" src="img/2_3.jpg" alt="Camiseta Escudo MG — espalda" />
         </div>
         <div class="product-info">
           <p class="product-name">Camiseta Escudo</p>
@@ -663,8 +663,8 @@
       <div class="product-card" onclick="openModal(1)">
         <div class="product-img-wrap">
           <span class="product-badge">Exclusiva</span>
-          <img class="img-front" src="ImágenesWeb/2_4.jpg" alt="Camiseta Nada se regala" />
-          <img class="img-back" src="ImágenesWeb/1_1.jpg" alt="Camiseta Nada se regala — frontal" />
+          <img class="img-front" src="img/2_4.jpg" alt="Camiseta Nada se regala" />
+          <img class="img-back" src="img/1_1.jpg" alt="Camiseta Nada se regala — frontal" />
         </div>
         <div class="product-info">
           <p class="product-name">Nada se regala</p>
@@ -681,8 +681,8 @@
     <!-- PACK — destacado -->
     <div class="pack-card" onclick="openModal(2)">
       <div class="pack-img-wrap">
-        <img class="img-front" src="ImágenesWeb/4_1.jpg" alt="Pack 2 Camisetas" />
-        <img class="img-back" src="ImágenesWeb/3_1.jpg" alt="Pack 2 Camisetas — detalle" />
+        <img class="img-front" src="img/4_1.jpg" alt="Pack 2 Camisetas" />
+        <img class="img-back" src="img/3_1.jpg" alt="Pack 2 Camisetas — detalle" />
       </div>
       <div class="pack-info">
         <p class="pack-tag">Mejor valor · Portes incluidos</p>
@@ -752,7 +752,7 @@
         name: 'Camiseta Escudo',
         price: '30,00 €',
         shipping: '+ 3,95 € envío',
-        img: 'ImágenesWeb/1_1.jpg',
+        img: 'img/1_1.jpg',
         desc: 'Lleva los valores en la espalda. Camiseta en algodón premium con logo bordado en el pecho y el escudo Método GEO de gran formato en la espalda. Lealtad · Sacrificio · Constancia.',
         isPack: false
       },
@@ -760,7 +760,7 @@
         name: 'Nada se regala',
         price: '30,00 €',
         shipping: '+ 3,95 € envío',
-        img: 'ImágenesWeb/2_4.jpg',
+        img: 'img/2_4.jpg',
         desc: 'Las palabras que te impulsan, puestas en tejido. "Nada se regala. Se gana. En proceso." Camiseta en algodón premium con logo en el pecho y diseño tipográfico exclusivo en la espalda.',
         isPack: false
       },
@@ -769,7 +769,7 @@
         price: '49,00 €',
         shipping: 'Envío incluido',
         shippingFree: true,
-        img: 'ImágenesWeb/4_1.jpg',
+        img: 'img/4_1.jpg',
         desc: 'Las dos camisetas de la colección — Escudo + Nada se regala — en un solo pedido. Elige una talla para cada modelo. El portes viene incluido.',
         isPack: true
       }
